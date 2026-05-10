@@ -70,11 +70,6 @@ training/logs/.lora_config.rendered.yaml
 # Per-case eval traces are big; comment this out if you want them in git
 # training/logs/*.trace.jsonl
 
-# Optional: heavy generated dataset artefacts. Uncomment if you'd rather
-# regenerate them locally from stages_raw than carry them in git.
-# training/datasets/final/
-# training/datasets/stages_raw/
-
 # macOS
 .DS_Store
 

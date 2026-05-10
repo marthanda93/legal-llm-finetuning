@@ -23,34 +23,115 @@ teacher LLM   | Stage C/D/E    | stratify    |    | Qwen3-14B |
 
 ---
 
-## Quick start
+## How to start training
+
+Everything goes through the `Makefile`. `make help` lists every target,
+`make status` shows what artefacts already exist on disk.
+
+### 0. Check current state
 
 ```bash
-# 0. one-time setup
-make install                       # creates .venv, installs requirements + this pkg in -e mode
-make convert                       # downloads + 4-bit-quantises Qwen3-14B (~30GB on disk)
-
-# 1. (re)build the dataset from raw sources (10422 train / 1810 valid / 1895 test)
-make data                          # runs Stage A/B/D/E builders + merge_and_split
-make verify                        # asserts zero off-vocab labels + 231/231 coverage
-
-# 2. train (cosine LR, val_batches=100, early-stop on 2 consecutive regressions)
-make train                         # auto-promotes the best checkpoint to adapters.safetensors
-
-# 3. fuse + serve + eval
-make fuse                          # adapter -> fused 4-bit model
-make serve                         # mlx_lm.server :8030 (separate terminal)
-make eval                          # writes training/logs/eval-fused-v2-full.json
-
-# common helpers
-make help                          # list every target
-make status                        # show what artefacts exist + sizes
-make compare A=0001000 B=0001400   # side-by-side checkpoint A/B
+make status
 ```
 
-If you need Stage C (synthetic FIRs from a teacher LLM), set one of
-`OPENAI_API_KEY` / `GOOGLE_API_KEY` / `ANTHROPIC_API_KEY` /
-`OPENROUTER_API_KEY` and run `make stage-c`.
+Typical fresh-checkout output:
+
+```
+Datasets: train=10422 / valid=1810 / test=1895    OK (already on disk)
+Adapters: legal-qwen3-14b-v2                       MISSING
+Models:   qwen3-14b-4bit                           MISSING  <- need to download base
+          legal-qwen3-14b-fused-v2                 MISSING  <- produced by `make fuse`
+```
+
+So the path is: **install → convert → train → fuse → serve → eval**.
+
+### 1. One-time setup (~30 min, mostly the base-model download)
+
+```bash
+make install      # creates .venv, installs mlx-lm + everything in requirements.txt
+make convert      # downloads + 4-bit quantises Qwen3-14B (~30 GB on disk; one-time)
+make verify       # sanity-checks train/valid/test (231/231 coverage, 0 drift)
+```
+
+`make data` (rebuild train/valid/test from `LAW_RAW_DATA/` + Stage builders)
+is **only needed** if you've changed the taxonomy, the alias map, or any
+Stage builder — the splits are committed to the repo.
+
+### 2. Train (the actual fine-tune)
+
+```bash
+make train
+```
+
+This single target does everything:
+
+1. Renders `training/logs/lora_config.v2.yaml` → `.lora_config.rendered.yaml` with absolute paths.
+2. Spawns `mlx_lm.lora` via `training/early_stop_lora.py`.
+3. Tees full output to a fresh log: `training/logs/lora-v2-<timestamp>.log`.
+4. Watches each `Iter N: Val loss V` line; SIGINTs the trainer after **2 consecutive val regressions** vs the running best (default `PATIENCE=2`, `MIN_ITER=400`).
+5. Runs `select_best_checkpoint --promote` against the log + adapter dir, so `adapters.safetensors` holds the **best** step's weights (not the last step's, which is mlx_lm's default).
+
+**Wall-clock**: ~2-4 hours on M1/M2/M3 Ultra 64 GB; early-stop usually
+fires around iter 1000-1400 with the v2 recipe.
+
+You can override knobs on the CLI:
+
+```bash
+make train PATIENCE=3 MIN_ITER=600                           # less twitchy early-stop
+make train CONFIG_TEMPLATE=training/logs/lora_config.yaml    # legacy v1 recipe
+```
+
+If you don't want the early-stop wrapper, use `train-no-stop` (still
+promotes the best checkpoint at the end):
+
+```bash
+make train-no-stop
+```
+
+### 3. Post-train: fuse, serve, evaluate
+
+In one terminal:
+
+```bash
+make fuse         # merges adapter into base + 4-bit quantises -> training/models/legal-qwen3-14b-fused-v2
+make serve        # mlx_lm.server on :8030 (blocks)
+```
+
+In another terminal:
+
+```bash
+make eval         # runs all 1895 test cases against :8030 -> training/logs/eval-fused-v2-full.json
+make eval-quick   # faster: only 60 cases, for a smoke check
+```
+
+`make eval` writes two artefacts:
+
+- `training/logs/eval-fused-v2-full.json` — aggregate metrics (Macro/Micro F1, JSON validity, MAE, non-crime FP, off-vocab audit).
+- `training/logs/eval-fused-v2-full.trace.jsonl` — one line per case with system + user prompt, raw response, gold, predicted events, latency. Flushed per-case so you can `tail -f` while it runs.
+
+### 4. Useful side targets
+
+```bash
+make best-ckpt                        # show the val-loss curve from the latest log
+make promote-best                     # re-promote the best checkpoint manually if needed
+make compare A=0001000 B=0001400      # A/B-test two checkpoints on the same FIR prompts
+make status                           # quick artefact summary
+make help                             # list every target
+```
+
+### 5. Optional: rebuild Stage C from a teacher LLM
+
+Stage C (synthetic FIRs from a teacher LLM) is the only stage that needs
+network + API credits. If you want to regenerate it, set ONE of these env
+vars and run:
+
+```bash
+export ANTHROPIC_API_KEY=...   # OR OPENAI_API_KEY=... OR GOOGLE_API_KEY=...
+make stage-c
+make merge verify              # rebuild final/{train,valid,test}.jsonl
+```
+
+Re-running Stage A/B/D/E (`make stages`) needs no API key.
 
 ---
 
