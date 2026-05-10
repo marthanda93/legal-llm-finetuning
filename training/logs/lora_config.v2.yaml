@@ -1,0 +1,48 @@
+# LoRA config for the v2 training run (drift-free, balanced data).
+#
+# NOTE: the three quoted paths below contain a placeholder token (REPO + ROOT,
+# wrapped in double-underscores) that the Makefile substitutes
+# with the absolute path of this repo at runtime so the file stays portable.
+# If you invoke `mlx_lm.lora -c <this file>` directly, render it first via
+# `make render-config` (or replace the three paths by hand).
+#
+# Differences vs v1 (lora_config.yaml):
+#   - learning_rate: 5e-5 (was 1e-4 constant; v1 overfit at iter ~1400)
+#   - lr_schedule:   cosine_decay starting from 5e-5 to 1e-6
+#   - iters:         1500  (was 4000; best v1 val loss was at iter 1000-1400)
+#   - val_batches:   100   (was 25; gives a stable val signal so early-stop fires correctly)
+#   - steps_per_eval: 100  (was 200; finer resolution near the optimum)
+#   - lora_parameters.dropout: 0.10 (was 0.05; small bump because we now
+#                                    down-sample the dominant `non_crime`
+#                                    class which slightly reduces inherent
+#                                    regularisation)
+#   - data: still training/datasets/final  (now stratified, balanced, drift-free)
+#
+# Use with the early-stop wrapper for safety:
+#   make train
+model: "__REPO_ROOT__/training/models/qwen3-14b-4bit"
+train: true
+data: "__REPO_ROOT__/training/datasets/final"
+fine_tune_type: lora
+num_layers: 16
+batch_size: 1
+iters: 1500
+val_batches: 100
+learning_rate: 5e-5
+lr_schedule:
+  name: cosine_decay
+  warmup: 100
+  arguments: [5.0e-5, 1500, 1.0e-6]
+steps_per_report: 25
+steps_per_eval: 100
+adapter_path: "__REPO_ROOT__/training/adapters/legal-qwen3-14b-v2"
+save_every: 100
+seed: 42
+grad_checkpoint: true
+mask_prompt: true
+optimizer: adamw
+
+lora_parameters:
+  rank: 16
+  scale: 2.0
+  dropout: 0.10

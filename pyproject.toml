@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "legal-llm-finetuning"
+version = "0.1.0"
+description = "LoRA fine-tuning workbench for an Indian-criminal-law FIR event extractor"
+requires-python = ">=3.10"
+authors = [{ name = "Marthanda" }]
+readme = "README.md"
+license = { text = "MIT" }
+dependencies = []  # Pinned in requirements.txt; pyproject only declares packages.
+
+[tool.setuptools]
+# Editable install so `from training.* import` and `from event_extraction.*
+# import` both resolve without any PYTHONPATH manipulation.
+packages = [
+  "training",
+  "event_extraction",
+]
+package-dir = { "" = "." }
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = [
+  "training/datasets",
+  "training/logs",
+  "training/models",
+  "training/adapters",
+  ".venv",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]

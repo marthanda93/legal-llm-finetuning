@@ -1,0 +1,25 @@
+# Legacy v1 config kept for reference / reproducibility.
+# Auto-substituted by the Makefile (see `__REPO_ROOT__` placeholders).
+# Prefer training/logs/lora_config.v2.yaml for new runs.
+model: "__REPO_ROOT__/training/models/qwen3-14b-4bit"
+train: true
+data: "__REPO_ROOT__/training/datasets/final"
+fine_tune_type: lora
+num_layers: 16
+batch_size: 1
+iters: 4000
+val_batches: 25
+learning_rate: 1e-4
+steps_per_report: 25
+steps_per_eval: 200
+adapter_path: "__REPO_ROOT__/training/adapters/legal-qwen3-14b"
+save_every: 200
+seed: 42
+grad_checkpoint: true
+mask_prompt: true
+optimizer: adamw
+
+lora_parameters:
+  rank: 16
+  scale: 2.0
+  dropout: 0.05

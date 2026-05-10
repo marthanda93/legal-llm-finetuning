@@ -1,0 +1,49 @@
+{
+  "seed": 42,
+  "fractions": {
+    "train": 0.8,
+    "val": 0.1,
+    "test": 0.1
+  },
+  "counts_by_stage": {
+    "A": 6000,
+    "B": 2146,
+    "C": 4539,
+    "D": 3726,
+    "E": 168
+  },
+  "skipped_by_stage": {},
+  "split_sizes": {
+    "train": 10422,
+    "valid": 1810,
+    "test": 1895
+  },
+  "max_stage_a": 6000,
+  "max_stage_b": 4000,
+  "min_per_eval_split": 1,
+  "downsample_cap": 500,
+  "upsample_min": 5,
+  "excluded_stages": [],
+  "taxonomy": {
+    "canonical_labels": 231,
+    "aliases_applied": 116,
+    "leftover_drift": {}
+  },
+  "coverage": {
+    "train": {
+      "categories_present": 231,
+      "canonical_total": 231,
+      "missing_from_canonical": []
+    },
+    "valid": {
+      "categories_present": 231,
+      "canonical_total": 231,
+      "missing_from_canonical": []
+    },
+    "test": {
+      "categories_present": 231,
+      "canonical_total": 231,
+      "missing_from_canonical": []
+    }
+  }
+}

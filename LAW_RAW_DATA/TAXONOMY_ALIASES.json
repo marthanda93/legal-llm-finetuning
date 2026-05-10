@@ -1,0 +1,150 @@
+{
+  "_meta": {
+    "purpose": "Map drift / synonym labels emitted by Stage C teacher (or model) to a canonical snake_case taxonomy label that exists in CRIME_TAXONOMY.json. Applied at training-data merge time, at eval scoring time, and at inference parsing time so the live model never emits an off-vocabulary label.",
+    "scope": "ONLY for true synonyms / alternate snake_case spellings. Do NOT use this map to merge legitimately distinct canonical labels (e.g. POCSO vs POSH vs BNS variants of harassment); those should remain separate so multi-statute FIRs can carry one event per applicable statute.",
+    "policy": "Alias keys MUST NOT exist in canonical taxonomy; values MUST exist in canonical taxonomy. Any alias whose canonical target is removed from the taxonomy should be deleted from this file.",
+    "sources": [
+      "Hand-curated from Stage C teacher drift observed in training/datasets/stages_raw/*.jsonl",
+      "Mined from training/logs/eval-fused-1000-full.trace.jsonl (the live fused-1000 model emitted 290 unique unmapped labels across 420 events; the most common are mapped here)"
+    ]
+  },
+  "aliases": {
+    "assault": "assault_or_criminal_force",
+    "physical_assault": "assault_or_criminal_force",
+    "physical_abuse": "assault_or_criminal_force",
+    "battery": "assault_or_criminal_force",
+    "sexual_assault": "outraging_modesty",
+
+    "threats": "criminal_intimidation",
+    "intimidation": "criminal_intimidation",
+    "criminal_threats": "criminal_intimidation",
+    "threatening_behavior": "criminal_intimidation",
+    "threatening_conduct": "criminal_intimidation",
+    "threatening_communication": "criminal_intimidation",
+    "threats_intimidation": "criminal_intimidation",
+    "threatening_public_servant": "obstructing_public_servant",
+    "blackmail": "extortion",
+
+    "fraud": "cheating",
+    "property_fraud": "cheating",
+    "false_pretenses": "cheating",
+    "online_fraud": "cheating",
+    "credit_card_fraud": "cheating",
+    "impersonation": "cheating",
+    "phishing": "computer_enabled_cheating_by_personation",
+    "document_fraud": "forgery",
+    "tampering_with_public_records": "forgery_of_court_records_or_public_register",
+    "embezzlement": "criminal_breach_of_trust",
+    "bribery": "bribery_of_public_servant",
+    "bribery_inducement": "bribery_of_public_servant",
+    "corruption": "bribery_of_public_servant",
+    "abuse_of_authority": "public_servant_misconduct",
+
+    "obstruction_of_justice": "obstructing_public_servant",
+
+    "harassment": "sexual_harassment",
+    "dowry_harassment": "dowry_demand",
+    "cyber_harassment": "stalking",
+    "cyber_stalking": "stalking",
+    "criminal_defamation": "defamation",
+    "public_insult": "word_or_gesture_insulting_modesty",
+    "public_humiliation": "caste_based_insult_or_intimidation_of_sc_st",
+    "caste_based_insult": "caste_based_insult_or_intimidation_of_sc_st",
+    "caste_discrimination": "caste_based_insult_or_intimidation_of_sc_st",
+    "caste_based_discrimination": "caste_based_insult_or_intimidation_of_sc_st",
+    "atrocity_against_sc_st": "atrocity_against_sc_st_person",
+
+    "child_abuse": "cruelty_to_child",
+    "child_sexual_abuse": "sexual_assault_on_child",
+    "child_abduction": "kidnapping_and_abduction_of_child",
+    "child_labour": "child_labour_violation",
+    "possession_of_child_pornography": "storage_of_child_pornography",
+
+    "domestic_violence": "physical_domestic_abuse",
+    "cruelty_by_husband": "cruelty_by_husband_or_relatives",
+
+    "house_trespass": "house_trespass_or_house_breaking",
+    "arson": "arson_fire_or_explosion_to_property",
+    "property_damage": "mischief",
+    "damage_to_property": "mischief",
+    "attempted_theft": "theft",
+
+    "false_prison": "wrongful_confinement",
+    "wrongful_restraint_or_confinement": "wrongful_confinement",
+
+    "rash_driving": "dangerous_or_rash_driving",
+    "dangerous_driving": "dangerous_or_rash_driving",
+    "reckless_driving": "dangerous_or_rash_driving",
+    "drunk_driving": "impaired_driving",
+    "unregistered_motor_vehicle": "driving_unregistered_vehicle",
+    "uninsured_motor_vehicle": "driving_uninsured_vehicle",
+    "driving_without_valid_licence": "unlicensed_driving",
+    "driving_without_licence": "unlicensed_driving",
+    "evasion_of_road_tax_and_registration_fees": "driving_unregistered_vehicle",
+
+    "arms_act_violation": "unlicensed_acquisition_or_possession_of_firearm",
+    "unlawful_possession_of_firearms": "unlicensed_acquisition_or_possession_of_firearm",
+    "unlawful_possession_of_amunition": "unlicensed_acquisition_or_possession_of_firearm",
+    "unlawful_possession_of_ammunition": "unlicensed_acquisition_or_possession_of_firearm",
+    "unlawful_importation_of_arms": "unlicensed_import_or_export_of_arms",
+    "planting_explosive_device": "arms_possession_or_use_for_criminal_purposes",
+
+    "smuggling": "trafficking_narcotic_drugs",
+    "drug_trafficking": "trafficking_narcotic_drugs",
+    "trafficking_of_narcotic_substances": "trafficking_narcotic_drugs",
+    "possession_of_narcotic_substances": "possession_of_narcotic_drugs_or_psychotropic_substances",
+    "unlawful_possession_of_narcotic_substances": "possession_of_narcotic_drugs_or_psychotropic_substances",
+
+    "cybercrime": "computer_system_abuse",
+    "computer_tampering": "tampering_with_computer_source_code",
+    "unauthorized_access": "unauthorized_access_to_computer_system",
+    "identity_theft": "identity_theft_via_computer",
+    "unauthorized_data_disclosure": "data_breach_non_notification",
+    "data_breach": "data_breach_non_notification",
+    "data_privacy_breach": "data_breach_non_notification",
+    "breach_of_confidentiality": "data_breach_non_notification",
+    "obscenity": "publication_of_obscene_electronic_content",
+    "distribution_of_obscene_material": "publication_of_obscene_electronic_content",
+
+    "sedition": "sedition_act_against_sovereignty",
+    "promoting_enmity": "promoting_enmity_between_groups",
+    "hate_speech": "promoting_enmity_between_groups",
+    "distribution_of_hate_material": "promoting_enmity_between_groups",
+    "public_disturbance": "public_nuisance",
+
+    "unlawful_association": "membership_of_unlawful_association",
+    "conspiracy": "criminal_conspiracy",
+    "conspiracy_to_commit_terrorist_act": "conspiracy_for_terrorism",
+    "harbouring_offender": "offender_harbouring",
+    "attempt_to_destroy_evidence": "destroying_evidence",
+
+    "desertion_from_service": "abetment_of_desertion_by_soldier_or_airman",
+    "abetment_of_desertion": "abetment_of_desertion_by_soldier_or_airman",
+
+    "environmental_pollution": "emission_or_discharge_beyond_standards",
+    "environmental_violation": "environmental_clearance_violation",
+    "environmental_hazard": "environmental_clearance_violation",
+    "wilful_non_furnishing_environmental_information": "non_furnishing_of_environmental_information",
+
+    "food_adulteration": "unsafe_food",
+    "misbranded_food_products": "misbranded_food",
+    "unhygienic_food_practices": "unsafe_food",
+    "adulterated_food_products": "unsafe_food",
+
+    "counterfeiting": "counterfeiting_currency_stamps_or_bank_notes",
+    "concealment_of_criminal_proceeds": "money_laundering",
+    "money_laundering_offence": "money_laundering",
+
+    "false_registration": "false_statement_or_personation_in_document_registration",
+    "copyright_offences": "copyright_infringement",
+    "unauthorized_reproduction_of_copies": "copyright_infringement",
+    "unauthorized_distribution_of_copies": "copyright_infringement",
+    "software_piracy": "copyright_infringement",
+
+    "sexual_exploitation": "sexual_exploitation_by_person_in_authority",
+    "sexual_harbouring_or_sexual_harbourage": "sexual_harassment",
+
+    "retaliation_against_whistleblower": "victimisation_of_employee",
+    "unfair_dismissal": "victimisation_of_employee"
+  }
+}

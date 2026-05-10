@@ -1,0 +1,146 @@
+{
+  "base_model": "/Users/marthanda/Desktop/Marthanda/git/SwadesiLegalCopilot/training/models/qwen3-14b-4bit",
+  "adapter_dir": "/Users/marthanda/Desktop/Marthanda/git/SwadesiLegalCopilot/training/adapters/legal-qwen3-14b",
+  "jsonl": "/Users/marthanda/Desktop/Marthanda/git/SwadesiLegalCopilot/training/datasets/final/valid.jsonl",
+  "max_tokens": 640,
+  "results": [
+    {
+      "checkpoint": "0001400_adapters.safetensors",
+      "cases": [
+        {
+          "case_index": 0,
+          "gold_event_count": 1,
+          "pred_event_count": 1,
+          "json_object_ok": true,
+          "response_chars": 625,
+          "response_preview": "<think>\n\n</think>\n\n{\n  \"fir_text_categories\": [\n    \"Copyright Offences\"\n  ],\n  \"events\": [\n    {\n      \"event_id\": 1,\n      \"crime_category\": \"copyright_offences\",\n      \"action_summary\": \"sold unauthorized photocopied books\",\n      \"details\": \"Suresh Agarwal was selling approximately 200 unauthorized photocopied copies of the complainant's book 'Modern Business Strategies' at Rs. 150 per copy without permission.\",\n      \"evidence\": \"This unauthorized reproduction and distribution is causing me financial loss and damage to my reputation as an author.\",\n      \"actors\": \"accused\",\n      \"confidence\": \"high\"\n    }\n  ]\n}"
+        },
+        {
+          "case_index": 1,
+          "gold_event_count": 3,
+          "pred_event_count": 2,
+          "json_object_ok": true,
+          "response_chars": 1300,
+          "response_preview": "<think>\n\n</think>\n\n{\n  \"fir_text_categories\": [\n    \"Money Laundering Offences\"\n  ],\n  \"events\": [\n    {\n      \"event_id\": 1,\n      \"crime_category\": \"money_laundering\",\n      \"action_summary\": \"integrated illegal funds into legitimate financial channels\",\n      \"details\": \"Accused obtained Rs. 2.45 crore through illegal sand mining and re-introduced them into lawful financial channels by purchasing commercial properties in Nehru Place market in names of shell companies between January 2023 and September 2023.\",\n      \"evidence\": \"The accused knowingly layered and integrated illegal money into legal assets to conceal their criminal origin.\",\n      \"actors\": \"accused\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"event_id\": 2,\n      \"crime_category\": \"money_laundering\",\n      \"action_summary\": \"invested illegal proceeds in government bonds and mutual funds\",\n      \"details\": \"Accused invested Rs. 85 lakh in government bonds through HDFC Bank and Rs. 42 lakh in mutual funds via SBI Mutual Fund in November 2023 using proceeds of crime to make them appear as legitimate business income.\",\n      \"evidence\": \"The accused knowingly layered and integrated illegal money into legal assets t"
+        },
+        {
+          "case_index": 2,
+          "gold_event_count": 0,
+          "pred_event_count": 0,
+          "json_object_ok": true,
+          "response_chars": 66,
+          "response_preview": "<think>\n\n</think>\n\n{\n  \"fir_text_categories\": [],\n  \"events\": []\n}"
+        },
+        {
+          "case_index": 3,
+          "gold_event_count": 4,
+          "pred_event_count": null,
+          "json_object_ok": false,
+          "response_chars": 2915,
+          "response_preview": "<think>\n\n</think>\n\n{\n  \"fir_text_categories\": [\n    \"Sexual Offences\"\n  ],\n  \"events\": [\n    {\n      \"event_id\": 1,\n      \"crime_category\": \"sexual_harbouring_or_sexual_harbourage\",\n      \"action_summary\": \"repeatedly sexually assaulted minor student\",\n      \"details\": \"Accused Vikram Singh Rathore repeatedly sexually assaulted the 14-year-old victim by touching her inappropriately in hostel premises over four months from October 2023 to January 2024.\",\n      \"evidence\": \"The accused, Vikram Singh Rathore, aged 42 years, is the school's physical education teacher and hostel warden.\",\n      \"actors\": \"accused\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"event_id\": 2,\n      \"crime_category\": \"criminal_intimidation\",\n      \"action_summary\": \"threatened victim with academic failure and expulsion\",\n      \"details\": \"On 15th January 2024, when the victim resisted his advances, the accused slapped her multiple times causing visible injuries on her face and threatened her with academic failure and expulsion if she complained.\",\n      \"evidence\": \"He also forcibly took photographs of her in compromising positions using his mobile phone (Samsung Galaxy, black colour) and said he would ci"
+        },
+        {
+          "case_index": 4,
+          "gold_event_count": 1,
+          "pred_event_count": 2,
+          "json_object_ok": true,
+          "response_chars": 1181,
+          "response_preview": "<think>\n\n</think>\n\n{\n  \"fir_text_categories\": [\n    \"Food Safety Offences\"\n  ],\n  \"events\": [\n    {\n      \"event_id\": 1,\n      \"crime_category\": \"misbranded_food\",\n      \"action_summary\": \"sold food product with false ingredient claims\",\n      \"details\": \"M/s Healthy Life Foods Private Limited sold 'Super Protein Plus Powder' with misleading claims of '100% Natural Protein' and 'No Artificial Ingredients' when synthetic amino acids and artificial sweeteners were present in the product.\",\n      \"evidence\": \"The accused deliberately published misleading advertisements to attract customers and increase sales.\",\n      \"actors\": \"accused\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"event_id\": 2,\n      \"crime_category\": \"misbranded_food\",\n      \"action_summary\": \"displayed misleading advertisements for food product\",\n      \"details\": \"The shop displayed large posters with false claims about the product's muscle-building benefits and ingredient composition, misleading consumers.\",\n      \"evidence\": \"The accused deliberately published misleading advertisements to attract customers and increase sales.\",\n      \"actors\": \"accused\",\n      \"confidence\": \"high\"\n    }\n  ]\n}"
+        },
+        {
+          "case_index": 5,
+          "gold_event_count": 0,
+          "pred_event_count": 0,
+          "json_object_ok": true,
+          "response_chars": 66,
+          "response_preview": "<think>\n\n</think>\n\n{\n  \"fir_text_categories\": [],\n  \"events\": []\n}"
+        },
+        {
+          "case_index": 6,
+          "gold_event_count": 4,
+          "pred_event_count": 4,
+          "json_object_ok": true,
+          "response_chars": 2078,
+          "response_preview": "<think>\n\n</think>\n\n{\n  \"fir_text_categories\": [\n    \"SC/ST Offences\"\n  ],\n  \"events\": [\n    {\n      \"event_id\": 1,\n      \"crime_category\": \"sc_st_offence\",\n      \"action_summary\": \"made casteist remarks and sexually coloured remarks\",\n      \"details\": \"Accused Vikram Singh Yadav made sexually coloured remarks referring to the complainant's caste, calling her 'Chamarin' and abusing her with casteist slurs.\",\n      \"evidence\": \"The accused exploited me sexually and assaulted me solely because I belong to Scheduled Caste community.\",\n      \"actors\": \"Vikram Singh Yadav\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"event_id\": 2,\n      \"crime_category\": \"sc_st_offence\",\n      \"action_summary\": \"forcibly touched and attempted to drag victim\",\n      \"details\": \"Accused Rajesh Singh Yadav forcibly touched the complainant's chest and tried to drag her towards an empty plot.\",\n      \"evidence\": \"The accused exploited me sexually and assaulted me solely because I belong to Scheduled Caste community.\",\n      \"actors\": \"Rajesh Singh Yadav\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"event_id\": 3,\n      \"crime_category\": \"sc_st_offence\",\n      \"action_summary\": \"slapped victim and abused "
+        },
+        {
+          "case_index": 7,
+          "gold_event_count": 3,
+          "pred_event_count": 2,
+          "json_object_ok": true,
+          "response_chars": 1142,
+          "response_preview": "<think>\n\n</think>\n\n{\n  \"fir_text_categories\": [\n    \"Cheating\"\n  ],\n  \"events\": [\n    {\n      \"event_id\": 1,\n      \"crime_category\": \"cheating\",\n      \"action_summary\": \"forged promissory note and receipt to mislead court\",\n      \"details\": \"Accused Vikram Singh Rathore presented a forged promissory note and a fabricated receipt in court to falsely claim a loan and payment, intending to mislead the court.\",\n      \"evidence\": \"The accused has deliberately created false documents to mislead the honorable court.\",\n      \"actors\": \"accused\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"event_id\": 2,\n      \"crime_category\": \"cheating\",\n      \"action_summary\": \"threatened to falsely implicate complainant in criminal case\",\n      \"details\": \"Accused threatened the complainant outside court premises to falsely implicate him in a criminal case if he did not withdraw his civil suit.\",\n      \"evidence\": \"When I objected in court, the accused threatened me outside the court premises saying he would falsely implicate me in a criminal case if I did not withdraw my suit.\",\n      \"actors\": \"accused\",\n      \"confidence\": \"high\"\n    }\n  ]\n}"
+        }
+      ]
+    },
+    {
+      "checkpoint": "0001800_adapters.safetensors",
+      "cases": [
+        {
+          "case_index": 0,
+          "gold_event_count": 1,
+          "pred_event_count": 2,
+          "json_object_ok": true,
+          "response_chars": 1316,
+          "response_preview": "<think>\n\n</think>\n\n{\n  \"fir_text_categories\": [\n    \"Intellectual Property Offences\"\n  ],\n  \"events\": [\n    {\n      \"event_id\": 1,\n      \"crime_category\": \"unauthorized_reproduction_of_copies\",\n      \"action_summary\": \"produced unauthorized copies of copyrighted work\",\n      \"details\": \"Suresh Agarwal produced approximately 200 unauthorized photocopied versions of the complainant's book 'Modern Business Strategies' without permission.\",\n      \"evidence\": \"On 15th March 2024, I discovered that one Suresh Agarwal, proprietor of Agarwal Book House, M.I. Road, Jaipur, was selling photocopied versions of my book without my permission.\",\n      \"actors\": \"Suresh Agarwal\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"event_id\": 2,\n      \"crime_category\": \"unauthorized_distribution_of_copies\",\n      \"action_summary\": \"distributed unauthorized copies of copyrighted work\",\n      \"details\": \"Suresh Agarwal distributed approximately 200 unauthorized photocopied versions of the complainant's book at Rs. 150 per copy without authorization.\",\n      \"evidence\": \"On 15th March 2024, I discovered that one Suresh Agarwal, proprietor of Agarwal Book House, M.I. Road, Jaipur, was selling photocopied v"
+        },
+        {
+          "case_index": 1,
+          "gold_event_count": 3,
+          "pred_event_count": 1,
+          "json_object_ok": true,
+          "response_chars": 688,
+          "response_preview": "<think>\n\n</think>\n\n{\n  \"fir_text_categories\": [\n    \"Money Laundering\"\n  ],\n  \"events\": [\n    {\n      \"event_id\": 1,\n      \"crime_category\": \"money_laundering\",\n      \"action_summary\": \"layered and integrated illegal funds into legitimate assets\",\n      \"details\": \"Accused systematically integrated Rs. 2.45 crore from illegal sand mining into legitimate economy by purchasing commercial properties and investing in government bonds and mutual funds, concealing criminal origin of funds.\",\n      \"evidence\": \"The accused knowingly layered and integrated illegal money into legal assets to conceal their criminal origin.\",\n      \"actors\": \"accused\",\n      \"confidence\": \"high\"\n    }\n  ]\n}"
+        },
+        {
+          "case_index": 2,
+          "gold_event_count": 0,
+          "pred_event_count": 0,
+          "json_object_ok": true,
+          "response_chars": 66,
+          "response_preview": "<think>\n\n</think>\n\n{\n  \"fir_text_categories\": [],\n  \"events\": []\n}"
+        },
+        {
+          "case_index": 3,
+          "gold_event_count": 4,
+          "pred_event_count": 4,
+          "json_object_ok": true,
+          "response_chars": 2163,
+          "response_preview": "<think>\n\n</think>\n\n{\n  \"fir_text_categories\": [\n    \"Sexual Exploitation of Child\"\n  ],\n  \"events\": [\n    {\n      \"event_id\": 1,\n      \"crime_category\": \"sexual_exploitation_of_child\",\n      \"action_summary\": \"repeated sexual touching of minor student\",\n      \"details\": \"Accused repeatedly sexually assaulted the 14-year-old victim by touching her inappropriately in the hostel premises over four months from October 2023 to January 2024.\",\n      \"evidence\": \"The accused, Vikram Singh Rathore, aged 42 years, is the school's physical education teacher and hostel warden.\",\n      \"actors\": \"accused\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"event_id\": 2,\n      \"crime_category\": \"sexual_exploitation_of_child\",\n      \"action_summary\": \"assault and physical violence on resisting minor\",\n      \"details\": \"On 15th January 2024, when the victim resisted, the accused slapped her multiple times causing visible injuries on her face and threatened her with academic failure and expulsion.\",\n      \"evidence\": \"The accused, Vikram Singh Rathore, aged 42 years, is the school's physical education teacher and hostel warden.\",\n      \"actors\": \"accused\",\n      \"confidence\": \"high\"\n    },\n    {\n     "
+        },
+        {
+          "case_index": 4,
+          "gold_event_count": 1,
+          "pred_event_count": 2,
+          "json_object_ok": true,
+          "response_chars": 1696,
+          "response_preview": "<think>\n\n</think>\n\n{\n  \"fir_text_categories\": [\n    \"Food Safety Offences\"\n  ],\n  \"events\": [\n    {\n      \"event_id\": 1,\n      \"crime_category\": \"misbranded_food\",\n      \"action_summary\": \"sold food with false ingredient claims\",\n      \"details\": \"The accused sold a food product labeled 'Super Protein Plus Powder' with claims of '100% Natural Protein' and 'No Artificial Ingredients', but the product contained synthetic amino acids and artificial sweeteners, contradicting the ingredient claims.\",\n      \"evidence\": \"The product packaging displayed prominent claims stating '100% Natural Protein - No Artificial Ingredients' and 'Clinically Proven to Build Muscle in 7 Days'. Upon examination of the ingredient list, I observed the presence of synthetic amino acids and artificial sweeteners, contradicting the 'No Artificial Ingredients' claim.\",\n      \"actors\": \"accused\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"event_id\": 2,\n      \"crime_category\": \"misbranded_food\",\n      \"action_summary\": \"published misleading food advertisements\",\n      \"details\": \"The accused displayed misleading advertisements on large posters inside the shop premises, falsely claiming the product was clinical"
+        },
+        {
+          "case_index": 5,
+          "gold_event_count": 0,
+          "pred_event_count": 0,
+          "json_object_ok": true,
+          "response_chars": 66,
+          "response_preview": "<think>\n\n</think>\n\n{\n  \"fir_text_categories\": [],\n  \"events\": []\n}"
+        },
+        {
+          "case_index": 6,
+          "gold_event_count": 4,
+          "pred_event_count": 3,
+          "json_object_ok": true,
+          "response_chars": 1655,
+          "response_preview": "<think>\n\n</think>\n\n{\n  \"fir_text_categories\": [\n    \"Sexual Exploitation\"\n  ],\n  \"events\": [\n    {\n      \"event_id\": 1,\n      \"crime_category\": \"sexual_exploitation\",\n      \"action_summary\": \"made sexually coloured remarks targeting caste\",\n      \"details\": \"Accused Vikram Singh Yadav made sexually coloured remarks referring to the complainant's caste, calling her 'Chamarin' and telling her to know her place.\",\n      \"evidence\": \"The accused exploited me sexually and assaulted me solely because I belong to Scheduled Caste community.\",\n      \"actors\": \"Vikram Singh Yadav\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"event_id\": 2,\n      \"crime_category\": \"sexual_exploitation\",\n      \"action_summary\": \"forcibly touched victim chest area\",\n      \"details\": \"Accused Rajesh Singh Yadav forcibly touched the complainant's chest and tried to drag her towards an empty plot.\",\n      \"evidence\": \"The accused exploited me sexually and assaulted me solely because I belong to Scheduled Caste community.\",\n      \"actors\": \"Rajesh Singh Yadav\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"event_id\": 3,\n      \"crime_category\": \"criminal_intimidation\",\n      \"action_summary\": \"threatened to teach"
+        },
+        {
+          "case_index": 7,
+          "gold_event_count": 3,
+          "pred_event_count": 2,
+          "json_object_ok": true,
+          "response_chars": 1143,
+          "response_preview": "<think>\n\n</think>\n\n{\n  \"fir_text_categories\": [\n    \"Cheating\"\n  ],\n  \"events\": [\n    {\n      \"event_id\": 1,\n      \"crime_category\": \"cheating\",\n      \"action_summary\": \"created and used forged financial documents\",\n      \"details\": \"Accused Vikram Singh Rathore created and presented forged promissory note and fabricated receipt in court to misrepresent loan obligations and payments, intending to deceive the court.\",\n      \"evidence\": \"The accused has deliberately created false documents to mislead the honorable court.\",\n      \"actors\": \"accused\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"event_id\": 2,\n      \"crime_category\": \"cheating\",\n      \"action_summary\": \"threatened to falsely implicate complainant in criminal case\",\n      \"details\": \"Accused threatened the complainant outside court to falsely implicate him in a criminal case if he did not withdraw his civil suit.\",\n      \"evidence\": \"When I objected in court, the accused threatened me outside the court premises saying he would falsely implicate me in a criminal case if I did not withdraw my suit.\",\n      \"actors\": \"accused\",\n      \"confidence\": \"high\"\n    }\n  ]\n}"
+        }
+      ]
+    }
+  ]
+}
